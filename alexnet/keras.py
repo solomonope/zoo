@@ -2,7 +2,7 @@ import tensorflow as tf
 
 
 class AlexNet():
-    def __init__(self):
+    def __init__(self, number_of_classes):
         input = tf.keras.Input(shape=(224, 224, 3))
 
         conv_1 = tf.keras.layers.Conv2D(96, kernel_size=(11, 11), strides=(4, 4), activation="relu")(input)
@@ -27,7 +27,7 @@ class AlexNet():
         dense_2 = tf.keras.layers.Dense(4096, activation="tanh")(dropout_1)
         dense_3 = tf.keras.layers.Dropout(0.5)(dense_2)
 
-        output = tf.keras.layers.Dense(17, activation="softmax")(dense_3)
+        output = tf.keras.layers.Dense(number_of_classes, activation="softmax")(dense_3)
 
         self.model = tf.keras.Model(inputs=input, outputs=output)
         self.model.compile(loss="categorical_crossentropy", optimizer='adam', metrics=["accuracy"])
