@@ -2,3 +2,4 @@ numpy
 tensorflow
 torch
 torchvision
+h5py
