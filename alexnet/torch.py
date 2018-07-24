@@ -50,11 +50,11 @@ class Alexnet(torch.nn.Module):
         x = self.dropout_2(x)
         return F.softmax(self.output(x))
 
-    def fit(self):
+    def fit(self, X, Y):
         pass
 
-    def predict(self):
-        pass
+    def predict(self, X):
+        return self.forward(X)
 
     def evaluate(self):
         pass
