@@ -1,5 +1,6 @@
-import torch
 import torch.nn.functional as F
+import torch
+
 
 
 class Alexnet(torch.nn.Module):
@@ -50,8 +51,10 @@ class Alexnet(torch.nn.Module):
         x = self.dropout_2(x)
         return F.softmax(self.output(x))
 
-    def fit(self, X, Y):
-        pass
+    def fit(self, X, Y, epochs=100):
+        for i in range(epochs):
+            pass
+
 
     def predict(self, X):
         return self.forward(X)
