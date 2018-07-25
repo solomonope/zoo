@@ -1,5 +1,5 @@
-from alexnet.torch import Alexnet
+from alexnet.torch_ import Alexnet
 
-alex_net = Alexnet()
+alex_net = Alexnet(1000)
 
 alex_net.parameters()

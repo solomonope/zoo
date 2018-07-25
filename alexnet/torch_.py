@@ -10,13 +10,13 @@ class Alexnet(torch.nn.Module):
         self.pool_1 = torch.nn.MaxPool2d(3, stride=2)
 
         self.conv_2 = torch.nn.Conv2d(96, 256, 5)
-        self.pool_2 = torch.nn.MaxPooling2d(pool_size=(3, 3), strides=(2, 2))
+        self.pool_2 = torch.nn.MaxPool2d(kernel_size=(3, 3), stride=(2, 2))
 
-        self.conv_3 = torch.nn.Conv2d(256, kernel_size=(3, 3))
-        self.conv_4 = torch.nn.Conv2d(384, kernel_size=(3, 3))
-        self.conv_5 = torch.nn.Conv2d(384, kernel_size=(3, 3))
+        self.conv_3 = torch.nn.Conv2d(256,384 kernel_size=(3, 3))
+        self.conv_4 = torch.nn.Conv2d(256,384, kernel_size=(3, 3))
+        self.conv_5 = torch.nn.Conv2d(384,384, kernel_size=(3, 3))
 
-        self.pool_3 = torch.nn.MaxPooling2d(pool_size=(3, 3), strides=(2, 2))
+        self.pool_3 = torch.nn.MaxPool2d(kernel_size=(3, 3), stride=(2, 2))
 
         self.dense_1 = torch.nn.Linear(384, 4096)
         self.dropout_1 = torch.nn.Dropout(0.5)
