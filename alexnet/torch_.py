@@ -2,7 +2,6 @@ import torch.nn.functional as F
 import torch
 
 
-
 class Alexnet(torch.nn.Module):
     def __init__(self, num_of_classes):
         super(Alexnet, self).__init__()
@@ -12,9 +11,9 @@ class Alexnet(torch.nn.Module):
         self.conv_2 = torch.nn.Conv2d(96, 256, 5)
         self.pool_2 = torch.nn.MaxPool2d(kernel_size=(3, 3), stride=(2, 2))
 
-        self.conv_3 = torch.nn.Conv2d(256,384 kernel_size=(3, 3))
-        self.conv_4 = torch.nn.Conv2d(256,384, kernel_size=(3, 3))
-        self.conv_5 = torch.nn.Conv2d(384,384, kernel_size=(3, 3))
+        self.conv_3 = torch.nn.Conv2d(256, 384, kernel_size=(3, 3))
+        self.conv_4 = torch.nn.Conv2d(384, 384, kernel_size=(3, 3))
+        self.conv_5 = torch.nn.Conv2d(384, 384, kernel_size=(3, 3))
 
         self.pool_3 = torch.nn.MaxPool2d(kernel_size=(3, 3), stride=(2, 2))
 
@@ -51,10 +50,18 @@ class Alexnet(torch.nn.Module):
         x = self.dropout_2(x)
         return F.softmax(self.output(x))
 
-    def fit(self, X, Y, epochs=100):
+    def fit(self, X, Y, epochs=100, lr=0.0001):
+        optimizer = torch.optim.Adam(self.parameters(), lr=lr)
+        loss_fn = torch.nn.CrossEntropyLoss()
         for i in range(epochs):
-            pass
+            for x, y in zip(X, Y):
+                optimizer.zero_grad()
+                output = self(x)
+                loss = loss_fn(output, y)
+                loss.backward()
+                optimizer.step()
 
+            pass
 
     def predict(self, X):
         return self.forward(X)
