@@ -61,8 +61,6 @@ class Alexnet(torch.nn.Module):
                 loss.backward()
                 optimizer.step()
 
-            pass
-
     def predict(self, X):
         return self.forward(X)
 
